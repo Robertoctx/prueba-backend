@@ -3,7 +3,7 @@ package com.prueba.dto;
 import java.sql.Date;
 
 public class MedicoDto {
-	
+
 	private int codigo_medico;
 
 	private String tipo_identificacion;
@@ -37,13 +37,16 @@ public class MedicoDto {
 	private Date fecha_registro;
 
 	public MedicoDto() {
-
+		this.nombre_completo = this.concatenarNombreCompleto();
+		this.fecha_nacimiento = null;
+		this.usuario_registro = "Roberto";
+		this.fecha_registro = new Date(System.currentTimeMillis());
 	}
 
 	public MedicoDto(int codigo_medico, String tipo_identificacion, String numero_identificacion, String primer_nombre,
-			String segundo_nombre, String primer_apellido, String segundo_apellido, String nombreCompleto, String mail,
-			Date fecha_nacimiento, double sueldo, String sexo, String codigo_sucursal, String codigo_empresa,
-			String usuario_registro, Date fecha_registro) {
+			String segundo_nombre, String primer_apellido, String segundo_apellido, String mail, Date fecha_nacimiento,
+			double sueldo, String sexo, String codigo_sucursal, String codigo_empresa, String usuario_registro,
+			Date fecha_registro) {
 		this.codigo_medico = codigo_medico;
 		this.tipo_identificacion = tipo_identificacion;
 		this.numero_identificacion = numero_identificacion;
@@ -51,7 +54,7 @@ public class MedicoDto {
 		this.segundo_nombre = segundo_nombre;
 		this.primer_apellido = primer_apellido;
 		this.segundo_apellido = segundo_apellido;
-		this.nombre_completo = nombreCompleto;
+		this.nombre_completo = this.concatenarNombreCompleto();
 		this.mail = mail;
 		this.fecha_nacimiento = fecha_nacimiento;
 		this.sueldo = sueldo;
@@ -188,6 +191,16 @@ public class MedicoDto {
 
 	public void setFecha_registro(Date fecha_registro) {
 		this.fecha_registro = fecha_registro;
+	}
+
+	public String concatenarNombreCompleto() {
+		String nombre = "";
+		nombre += this.primer_nombre + " ";
+		if (this.segundo_nombre != null) {
+			nombre += this.segundo_nombre + " ";
+		}
+		nombre += this.primer_apellido + " " + this.segundo_apellido;
+		return nombre;
 	}
 
 }

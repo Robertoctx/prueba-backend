@@ -1,7 +1,6 @@
 package com.prueba.dto;
 
-import java.util.Date;
-import java.text.SimpleDateFormat;
+import java.sql.Date;
 
 public class SucursalDto {
 
@@ -15,15 +14,15 @@ public class SucursalDto {
 
 	private String usuario_registro;
 
-	private String fecha_registro;
+	private Date fecha_registro;
 
 	public SucursalDto() {
 		this.usuario_registro = "Roberto";
-		this.fecha_registro = this.fechaActual();
+		this.fecha_registro = new Date(System.currentTimeMillis());
 	}
 
 	public SucursalDto(int codigo_empresa, int codigo_sucursal, String nombre_sucursal, String region,
-			String usuario_registro, String fecha_registro) {
+			String usuario_registro, Date fecha_registro) {
 		this.codigo_empresa = codigo_empresa;
 		this.codigo_sucursal = codigo_sucursal;
 		this.nombre = nombre_sucursal;
@@ -72,17 +71,12 @@ public class SucursalDto {
 		this.usuario_registro = usuario_registro;
 	}
 
-	public String getFecha_registro() {
+	public Date getFecha_registro() {
 		return fecha_registro;
 	}
 
-	public void setFecha_registro(String fecha_registro) {
+	public void setFecha_registro(Date fecha_registro) {
 		this.fecha_registro = fecha_registro;
 	}
-	
-	public String fechaActual() {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		return formatter.format(new Date());
-	}
-	
+
 }

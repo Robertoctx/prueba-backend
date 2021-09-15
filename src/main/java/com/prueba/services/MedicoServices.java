@@ -1,12 +1,10 @@
 package com.prueba.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.prueba.dto.MedicoDto;
-import com.prueba.entities.Medico;
 
 @Service
 public interface MedicoServices {

@@ -53,7 +53,6 @@ public class SucursalServicesImpl implements SucursalServices {
 		Optional<Sucursal> sucursal = sucursalRepository.findById(codigoSucursal);
 		sucursal.get().setNombre_sucursal(data.getNombre_sucursal());
 		sucursal.get().setRegion(data.getRegion());
-		System.out.print(sucursal.get().toString());
 		sucursalRepository.save(sucursal.get());
 		return new HashMap<>();
 	}

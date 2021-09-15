@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prueba.dto.MedicoDto;
-import com.prueba.repositories.MedicoRepository;
 import com.prueba.services.MedicoServices;
 
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST })
@@ -27,9 +26,6 @@ public class MedicoController {
 
 	@Autowired
 	private MedicoServices medicoServices;
-
-	@Autowired
-	private MedicoRepository rep;
 
 	@GetMapping("")
 	public ResponseEntity<?> getMedicos(@RequestParam(name = "codigoEmpresa", required = false) String codigoEmpresa,
@@ -43,19 +39,21 @@ public class MedicoController {
 				resp.put("code", 200);
 				resp.put("message", "OK");
 				if (codigoSucursal != null) {
-					resp.put("data", medicoServices.listCODIGO_SUCURSAL(Integer.parseInt(codigoEmpresa), Integer.parseInt(codigoSucursal)));
+					resp.put("data", medicoServices.listCODIGO_SUCURSAL(Integer.parseInt(codigoEmpresa),
+							Integer.parseInt(codigoSucursal)));
 				} else if (region != null) {
 					resp.put("data", medicoServices.listREGION(Integer.parseInt(codigoEmpresa), region));
 				} else if (tipoFiltro != null && valorFiltro != null) {
 					switch (tipoFiltro) {
-						case "nombreMedico":
-							resp.put("data", medicoServices.listNOMBRE_MEDICO(Integer.parseInt(codigoEmpresa), valorFiltro));
-							break;
-						default:
-							resp.put("code", 400);
-							resp.put("message", "El campo valorFiltro es obligatorio.");
-							resp.put("data", new ArrayList());
-							return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
+					case "nombreMedico":
+						resp.put("data",
+								medicoServices.listNOMBRE_MEDICO(Integer.parseInt(codigoEmpresa), valorFiltro));
+						break;
+					default:
+						resp.put("code", 400);
+						resp.put("message", "El campo valorFiltro es obligatorio.");
+						resp.put("data", new ArrayList());
+						return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
 					}
 				} else {
 					resp.put("data", medicoServices.listCODIGO_EMPRESA(Integer.parseInt(codigoEmpresa)));
@@ -74,14 +72,14 @@ public class MedicoController {
 			return new ResponseEntity<>(resp, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@PostMapping("")
-	public ResponseEntity<?> setMedicos(@RequestBody MedicoDto medico){
+	public ResponseEntity<?> setMedico(@RequestBody MedicoDto medico) {
 		Map<String, Object> resp = new HashMap<>();
 		Map<String, Object> data = new HashMap<>();
 		int codigo = medicoServices.setMedico(medico);
 		try {
-			if(!String.valueOf(codigo).equals(null)) {
+			if (!String.valueOf(codigo).equals(null)) {
 				resp.put("code", 200);
 				resp.put("message", "OK");
 				data.put("codigoMedico", codigo);
@@ -89,7 +87,7 @@ public class MedicoController {
 				return new ResponseEntity<>(resp, HttpStatus.OK);
 			} else {
 				resp.put("code", 400);
-				resp.put("message", "Validaciones");
+				resp.put("message", "El registro no ha sido encontrado");
 				resp.put("data", new ArrayList());
 				return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
 			}

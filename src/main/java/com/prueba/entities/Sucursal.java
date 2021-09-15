@@ -1,5 +1,7 @@
 package com.prueba.entities;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,14 +33,14 @@ public class Sucursal {
 	private String usuario_registro;
 
 	@Column(name = "FECHA_REGISTRO")
-	private String fecha_registro;
+	private Date fecha_registro;
 
 	public Sucursal() {
 
 	}
 
 	public Sucursal(int codigo_sucursal, int codigo_empresa, String nombre_sucursal, String region,
-			String usuario_registro, String fecha_registro) {
+			String usuario_registro, Date fecha_registro) {
 		super();
 		this.codigo_sucursal = codigo_sucursal;
 		this.codigo_empresa = codigo_empresa;
@@ -88,16 +90,16 @@ public class Sucursal {
 		this.usuario_registro = usuario_registro;
 	}
 
-	public String getFecha_registro() {
+	public Date getFecha_registro() {
 		return fecha_registro;
 	}
 
-	public void setFecha_registro(String fecha_registro) {
+	public void setFecha_registro(Date fecha_registro) {
 		this.fecha_registro = fecha_registro;
 	}
 	
 	public String toString() {
-		return this.nombre + "," + this.region + "," + this.usuario_registro;
+		return this.nombre + "," + this.region + "," + this.usuario_registro + "," + this.fecha_registro;
 	}
 
 }

@@ -30,5 +30,12 @@ public class SucursalMinDto {
 	public void setRegion(String region) {
 		this.region = region;
 	}
+	
+	public String dateToString(String date) {
+		String[] dateTime = date.split(" ");
+		String[] fecha = dateTime[0].split("-");
+		String fechaConvertida = fecha[2] + "/" + fecha[1] + "/" + fecha[0];
+		return fechaConvertida;
+	}
 
 }

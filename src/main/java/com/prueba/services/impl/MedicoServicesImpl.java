@@ -181,7 +181,7 @@ public class MedicoServicesImpl implements MedicoServices {
 		medico.setSegundo_nombre(data.getSegundo_nombre());
 		medico.setPrimer_apellido(data.getPrimer_apellido());
 		medico.setSegundo_apellido(data.getSegundo_apellido());
-		medico.setNombreCompleto(data.getNombreCompleto());
+		medico.setNombreCompleto(data.concatenarNombreCompleto());
 		medico.setMail(data.getMail());
 		medico.setFecha_nacimiento(data.getFecha_nacimiento());
 		medico.setSueldo(data.getSueldo());

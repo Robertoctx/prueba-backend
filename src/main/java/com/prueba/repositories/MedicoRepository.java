@@ -26,7 +26,7 @@ public interface MedicoRepository extends JpaRepository<Medico, Integer> {
 	public abstract List<Medico> findByREGION(@Param("codigoEmpresa") int codigoEmpresa,
 			@Param("region") String region);
 
-	@Query(value = "SELECT * FROM MEDICO WHERE CODIGO_EMPRESA = :codigoEmpresa AND NOMBRE_COMPLETO LIKE :valorFiltro", nativeQuery = true)
+	@Query(value = "SELECT * FROM MEDICO WHERE CODIGO_EMPRESA = :codigoEmpresa AND NOMBRE_COMPLETO LIKE %:valorFiltro%", nativeQuery = true)
 	public abstract List<Medico> findByNOMBRE_MEDICO(@Param("codigoEmpresa") int codigoEmpresa,
 			@Param("valorFiltro") String valorFiltro);
 

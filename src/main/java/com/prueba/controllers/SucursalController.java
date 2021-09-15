@@ -25,7 +25,7 @@ import com.prueba.services.SucursalServices;
 
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST })
 @RestController
-@RequestMapping("/api/v1//sucursales")
+@RequestMapping("/api/v1/sucursales")
 public class SucursalController {
 
 	@Autowired
@@ -83,7 +83,7 @@ public class SucursalController {
 				}
 			} else {
 				resp.put("code", 400);
-				resp.put("message", "El campo codigo_sucursal es obligatorio.");
+				resp.put("message", "El campo codigoSucursal es obligatorio.");
 				resp.put("data", new ArrayList());
 				return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
 			}
